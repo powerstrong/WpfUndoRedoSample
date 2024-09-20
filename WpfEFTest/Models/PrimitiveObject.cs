@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WpfEFTest.Models
 {
-    internal class PrimitiveObject
+    public class PrimitiveObject
     {
         [Key]
         public int Id { get; set; } // 기본 키
