@@ -11,10 +11,10 @@
     mc:Ignorable="d">
     <Grid>
         <StackPanel Width="200" Margin="5">
-            <Button Margin="5" Content="add a joint angle" />
-            <Button Margin="5" Content="add a primitive object" />
-            <Button Margin="5" Content="show joint angle list" />
-            <Button Margin="5" Content="show primitive object list" />
+            <Button Margin="5" Content="add a joint angle" Click="Button_Click_AddJointAngle" />
+            <Button Margin="5" Content="add a primitive object" Click="Button_Click_AddPrimitiveObject" />
+            <Button Margin="5" Content="show joint angle list" Click="Button_Click_ShowJointAngleList" />
+            <Button Margin="5" Content="show primitive object list" Click="Button_Click_ShowPrimitiveObjectList" />
         </StackPanel>
 
     </Grid>
