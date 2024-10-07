@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace WpfEFTest.Models
 {
-    public class JointAngle
+    public class JointAngle : BaseData
     {
         public JointAngle(double j1, double j2, double j3, double j4, double j5, double j6)
         {
+            Class = DataClass.JointAngle;
+
             J1 = j1;
             J2 = j2;
             J3 = j3;
@@ -19,8 +21,6 @@ namespace WpfEFTest.Models
             J6 = j6;
         }
 
-        [Key]
-        public int Id { get; set; } // 기본 키
         public double J1 { get; set; }
         public double J2 { get; set; }
         public double J3 { get; set; }

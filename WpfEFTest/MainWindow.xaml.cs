@@ -19,22 +19,33 @@ namespace WpfEFTest
     public partial class MainWindow : Window
     {
         private SimulatorDbContext _context = new();
+        private UndoManager _undoManager = new();
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        private void Button_Click_ClearAll(object sender, RoutedEventArgs e)
+        {
+            _context.JointAngles.RemoveRange(_context.JointAngles);
+            _context.PrimitiveObjects.RemoveRange(_context.PrimitiveObjects);
+            _context.SaveChanges(); // 변경 사항 저장
+        }
+
+
         private void Button_Click_AddJointAngle(object sender, RoutedEventArgs e)
         {
-            _context.JointAngles.Add(new JointAngle(1,2,3,4,5,6));
-            _context.SaveChanges();
+            var data = new JointAngle(1, 2, 3, 4, 5, 6);
+            var command = new AddCommand<JointAngle>(_context, data);
+            _undoManager.Execute(command);
         }
 
         private void Button_Click_AddPrimitiveObject(object sender, RoutedEventArgs e)
         {
-            _context.PrimitiveObjects.Add(new PrimitiveObject("name", "type"));
-            _context.SaveChanges();
+            var data = new PrimitiveObject("name", "type");
+            var command = new AddCommand<PrimitiveObject>(_context, data);
+            _undoManager.Execute(command);
         }
 
         private void Button_Click_ShowJointAngleList(object sender, RoutedEventArgs e)
@@ -62,6 +73,16 @@ namespace WpfEFTest
             }
 
             MessageBox.Show(sb.ToString());
+        }
+        
+        private void Button_Click_Undo(object sender, RoutedEventArgs e)
+        {
+            _undoManager.Undo();
+        }
+
+        private void Button_Click_Redo(object sender, RoutedEventArgs e)
+        {
+            _undoManager.Redo();
         }
     }
 }
