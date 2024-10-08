@@ -48,6 +48,21 @@ namespace WpfEFTest
             _undoManager.Execute(command);
         }
 
+        private void Button_Click_AddTwoData(object sender, RoutedEventArgs e)
+        {
+            var dataAngle = new JointAngle(2, 3, 4, 5, 6, 7);
+            var commandAngle = new AddCommand<JointAngle>(_context, dataAngle);
+
+            var dataObject = new PrimitiveObject("name2", "type2");
+            var commandObject = new AddCommand<PrimitiveObject>(_context, dataObject);
+
+            var CompositeCommand = new TransactionalCompositeCommand(_context);
+            CompositeCommand.AddCommand(commandAngle);
+            CompositeCommand.AddCommand(commandObject);
+
+            _undoManager.Execute(CompositeCommand);
+        }
+
         private void Button_Click_ShowJointAngleList(object sender, RoutedEventArgs e)
         {
             var list = _context.JointAngles.ToList();
