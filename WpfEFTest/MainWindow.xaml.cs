@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -28,11 +29,16 @@ namespace WpfEFTest
 
         private void Button_Click_ClearAll(object sender, RoutedEventArgs e)
         {
-            _context.JointAngles.RemoveRange(_context.JointAngles);
-            _context.PrimitiveObjects.RemoveRange(_context.PrimitiveObjects);
-            _context.SaveChanges(); // 변경 사항 저장
-        }
+            //_context.JointAngles.RemoveRange(_context.JointAngles);
+            //_context.PrimitiveObjects.RemoveRange(_context.PrimitiveObjects);
+            //_context.SaveChanges();
 
+            //// reset key index
+            //_context.Database.ExecuteSqlRaw("DELETE FROM sqlite_sequence WHERE name = 'JointAngles';");
+            //_context.Database.ExecuteSqlRaw("DELETE FROM sqlite_sequence WHERE name = 'PrimitiveObjects';");
+
+            //_context.Database.ExecuteSqlRaw("VACUUM;");
+        }
 
         private void Button_Click_AddJointAngle(object sender, RoutedEventArgs e)
         {

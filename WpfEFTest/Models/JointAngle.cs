@@ -11,8 +11,6 @@ namespace WpfEFTest.Models
     {
         public JointAngle(double j1, double j2, double j3, double j4, double j5, double j6)
         {
-            Class = DataClass.JointAngle;
-
             J1 = j1;
             J2 = j2;
             J3 = j3;

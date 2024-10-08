@@ -11,8 +11,6 @@ namespace WpfEFTest.Models
     {
         public PrimitiveObject(string name, string type)
         {
-            Class = DataClass.PrimitiveObject;
-
             Name = name;
             Type = type;
         }
